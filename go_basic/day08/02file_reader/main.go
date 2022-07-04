@@ -4,44 +4,42 @@ import "os"
 import "fmt"
 import "io"
 import "bufio"
-import "ioutil"
-
+import "io/ioutil"
 
 //读文件
-func readFile(){
+func readFile() {
 	//文件的读取
 	//打开文件
-	file , err := os.Open("./main.go")
+	file, err := os.Open("./main.go")
 
-	if err != nil{
+	if err != nil {
 		fmt.Printf("open file failed! Error:%v\n", err)
-		return 
-	} 
+		return
+	}
 	//关闭文件
 	defer file.Close()
 	//读文件
 	var temp [128]byte
-	for{
-		n , err :=file.Read(temp[:])//n为此次读取的字节数
-		if err == io.EOF{
+	for {
+		n, err := file.Read(temp[:]) //n为此次读取的字节数
+		if err == io.EOF {
 			fmt.Printf("read file failed! Error:%v\n", err)
-		return
+			return
 		}
-		fmt.Print("读取了%d个字节！\n",n)
+		fmt.Print("读取了%d个字节！\n", n)
 		fmt.Println("string(temp[:n])")
-		if n < 128{
+		if n < 128 {
 			return
 		}
 	}
-	
+
 }
 
-
 //用bufio读文件
-func readFileBufIo(){
+func readFileBufIo() {
 	//打开文件
-	file , err := os.Open("./main.go")
-	if err == io.EOF{
+	file, err := os.Open("./main.go")
+	if err == io.EOF {
 		fmt.Printf("open file failed! Error:%v\n", err)
 		return
 	}
@@ -49,35 +47,34 @@ func readFileBufIo(){
 	defer file.Close()
 	//创建一个读取内容的对象
 	reader := bufio.NewReader(file)
-	for{
+	for {
 		line, err := reader.ReadString('\n')
 
-		if err == io.EOF{
+		if err == io.EOF {
 			return
 		}
-		if err != nil{
-			fmt.Printf("read file failed! Error:%v\n",err)
+		if err != nil {
+			fmt.Printf("read file failed! Error:%v\n", err)
 			return
 		}
 		fmt.Print(line)
-	} 
-	
+	}
+
 }
 
 //读取文件用ioUtil   读取整个文件
-func readFileIoUtil(){
-	ret ,err := ioutil.ReadFile("./main.go")
-	if err != nil{
-		fmt.Printf("read file failed! Error:%v\n",err)
+func readFileIoUtil() {
+	ret, err := ioutil.ReadFile("./main.go")
+	if err != nil {
+		fmt.Printf("read file failed! Error:%v\n", err)
 		return
 	}
 	fmt.Println(string(ret))
 
 }
-func main(){
-		readFile()
-		readFileBufIo()
-		// readFileIoUtil()	
-	
+func main() {
+	readFile()
+	readFileBufIo()
+	// readFileIoUtil()
 
 }

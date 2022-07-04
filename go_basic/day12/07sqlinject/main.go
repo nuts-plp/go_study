@@ -2,20 +2,23 @@ package main
 
 import (
 	"fmt"
-	
+	"github.com/jmoiron/sqlx"
 )
-var(
-	db *sqlx.DB
+
+var (
+	db  *sqlx.DB
 	err error
 )
+
 type user struct {
-	Id int
+	Id   int
 	Name string
-	Age int
+	Age  int
 }
-func initDB(){
-	dsn :="root:root@tcp(127.0.0.1:3306)/sql_test"
-	db,err = sqlx.Connect("mysql",dsn)
+
+func initDB() {
+	dsn := "root:root@tcp(127.0.0.1:3306)/sql_test"
+	db, err = sqlx.Connect("mysql", dsn)
 	if err != nil {
 		fmt.Printf("Error check !err: %v\n", err)
 		return
@@ -26,22 +29,21 @@ func initDB(){
 
 }
 
-func sqlInject(name string){
-	SQLstr:=fmt.Sprintf("Select * from users WHERE name ='%s'",name)
-	fmt.Printf("SQL: %s\n",SQLstr)
+func sqlInject(name string) {
+	SQLstr := fmt.Sprintf("Select * from users WHERE name ='%s'", name)
+	fmt.Printf("SQL: %s\n", SQLstr)
 
 	var u user
-	err = db.QueryRow(SQLstr).Scan(&u.Id,&u.Name,&u.Age)
-	if err != nil{
-		fmt.Printf("exec failed! err:%v\n",err)
+	err = db.QueryRow(SQLstr).Scan(&u.Id, &u.Name, &u.Age)
+	if err != nil {
+		fmt.Printf("exec failed! err:%v\n", err)
 		return
 	}
-	fmt.Printf("user:%#v\n",u)
+	fmt.Printf("user:%#v\n", u)
 }
-func main(){
+func main() {
 	initDB()
 	sqlInject("潘丽萍")
 	sqlInject("' or 1=1#")
-	
 
 }

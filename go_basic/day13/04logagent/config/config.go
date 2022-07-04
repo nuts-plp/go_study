@@ -1,19 +1,22 @@
 package config
 
 type AppConfig struct {
-	KafkaConfig `ini:"kafka"`
-	Taillog `ini:"taillog"`
+	KafkaConfig   `ini:"kafka"`
+	TaillogConfig `ini:"taillog"`
+	EtcdConfig    `ini:"etcd"`
 }
 
 type KafkaConfig struct {
-	Address string `ini:"address"`
-	Topic string `ini:"topic"`
+	Address     string `ini:"address"`
+	Topic       string `ini:"topic"`
+	ChanMaxSize int    `ini:"chan_max_size"`
 }
 
-type Taillog struct {
-	FieName string `ini:"fiename"`
+type TaillogConfig struct {
+	FieName string `ini:"filename"`
 }
 type EtcdConfig struct {
 	Address string `ini:"address"`
-	TimeOut int `ini:"timeout"`
+	TimeOut int    `ini:"timeout"`
+	Key     string `ini:"collect_log_config"`
 }

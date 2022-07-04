@@ -1,29 +1,64 @@
 package taillog
-import(
-	"github.com/hpcloud/tail"
+
+import (
+	"context"
 	"fmt"
-	"time"
+	"github.com/hpcloud/tail"
+	"go_basic/day13/04logagent/kafka"
 )
 
-var(
+var (
 	tailObj *tail.Tail
 )
 
-func Init(fileName string) (err error) {
-	config := tail.Config{
-		ReOpen:true,
-		Follow:true,
-		Location:&tail.SeekInfo{Offset:0,Whence:2},
-		MustExist:false,
-		Poll:true,
+//创建tailTask   一个日志收集任务
+type TailTask struct {
+	path       string
+	topic      string
+	instance   *tail.Tail
+	ctx        context.Context
+	cancelFunc context.CancelFunc
+}
+
+func NewTailTask(path, topic string) (tailObj *TailTask) {
+	ctx, cancel := context.WithCancel(context.Background())
+	tailObj = &TailTask{
+		path:       path,
+		topic:      topic,
+		ctx:        ctx,
+		cancelFunc: cancel,
 	}
-	tailObj,err = tail.TailFile(fileName,config)
+	//根据路径去打开日志
+	tailObj.init()
+	return
+}
+
+func (t *TailTask) init() {
+	config := tail.Config{
+		ReOpen:    true,
+		Follow:    true,
+		Location:  &tail.SeekInfo{Offset: 0, Whence: 2},
+		MustExist: false,
+		Poll:      true,
+	}
+	var err error
+	t.instance, err = tail.TailFile(t.path, config)
 	if err != nil {
 		fmt.Println("tail file failed! err: ", err)
 		return
 	}
-	return
+	go t.run()
 }
-func ReadLog()<-chan *tail.Line{
-	return tail.Lines
+func (t *TailTask) run() {
+	for {
+		select {
+		case <-t.ctx.Done():
+			fmt.Printf("tail task :%s_%s over!\n", t.path, t.topic)
+			return
+		case line := <-t.instance.Lines:
+			//3.1、循环每个日志收集项，发往kafka
+			kafka.SendToChan(t.topic, line.Text) //函数调函数
+		}
+
+	}
 }
