@@ -82,7 +82,7 @@ func main() {
 	}
 	//3、收集日志发往kafka
 	taillog.Init(configs)
-	//因为newConfChan访问了taskMger的NewConfChan，这个channel是在taillog.Init()中初始化的
+	//因为newConfChan访问了taskMger的NewConfChan，这个channel是在taillog.init()中初始化的
 	newConfChan := taillog.NewConfChan() //从taillog中获取对外暴露的通道
 	wg.Add(1)
 	go etcd.WatchConf(cfg.EtcdConfig.Key, newConfChan) //哨兵发现最新的配置信息会通知上面的那个通道

@@ -26,9 +26,9 @@ func Init(addrs string, maxSize int) (err error) {
 	config.Producer.Return.Successes = true                   //成功交付的消息将在success channel返回
 
 	// //构造一个消息
-	// msg := &sarama.ProducerMessage{}
+	// msg := &sarama_kafka_producer.ProducerMessage{}
 	// msg.Topic = "web_log"
-	// msg.Value = sarama.StringEncoder("this is a test log!")
+	// msg.Value = sarama_kafka_producer.StringEncoder("this is a test log!")
 
 	//连接kafka
 	client, err = sarama.NewSyncProducer([]string{addrs}, config)

@@ -9,6 +9,7 @@ var redisDB *redis.Client
 
 //连接redis
 func initDB() {
+	//注意还有一种tls连接模式
 	redisDB := redis.NewClient(&redis.Options{
 		Addr:     "127.0.0.1:6379", //地址及端口号
 		Password: "",               //密码
@@ -23,7 +24,9 @@ func initDB() {
 	}
 	fmt.Println("redis connection successfully!")
 }
+
 func main() {
 	initDB()
 
+	//defer redisDB.Close()
 }
