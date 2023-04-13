@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>render1 渲染</title>
+</head>
+<body>
+<p>      数据{{ . }}</p>
+<p>定义变量    {{ $age:=100 }} age{{ $age }}
+            {{ $f :=.u1 }}
+</p>
+<p>       结构体：
+        name:    {{- $f.Name -}}
+        ID:         {{ $f.ID }}
+        map:
+        name:{{ .m1.name }}
+        age:{{ .m1.age }}
+</p>
+</body>
+</html>
