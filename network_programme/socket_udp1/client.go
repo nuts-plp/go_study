@@ -5,7 +5,7 @@ import (
 	"net"
 )
 
-func main() {
+func testTCP() {
 	addr, _ := net.ResolveUDPAddr("udp", "127.0.0.1:8887")
 	conn, _ := net.DialUDP("udp", nil, addr)
 	defer conn.Close()
@@ -24,5 +24,8 @@ func main() {
 		fmt.Println("发送数据:", input)
 
 	}
+}
+func main() {
+	testTCP()
 
 }
