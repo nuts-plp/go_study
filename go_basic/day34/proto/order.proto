@@ -1,0 +1,24 @@
+syntax="proto3";
+option go_package="./order;order";
+message order{
+  int64 id = 1;
+  double price = 2;
+  string name = 3;
+  string tel = 4;
+  string address = 5;
+  string time = 6;
+
+  OrderItem orderItem = 7;
+  phoneType p = 8;
+}
+message OrderItem{
+  int64 goodsId = 1;
+  string title = 2;
+  double price = 3;
+  int32 num = 4;
+}
+enum phoneType{
+  mobile = 0;
+  home = 1;
+  worker = 2;
+}

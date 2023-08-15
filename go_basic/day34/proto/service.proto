@@ -1,0 +1,14 @@
+syntax="proto3";
+option go_package="./GoodsService";
+// RPC接口   定义RPC服务  生成 接口
+service GoodsService{
+  rpc AddGoods(AddGoodsReq) returns (AddGoodsRes);
+}
+message AddGoodsReq{
+  string title = 1;
+
+}
+message AddGoodsRes{
+
+  bool success = 2;
+}
