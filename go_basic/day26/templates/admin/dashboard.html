@@ -1,0 +1,49 @@
+{{define "admin/dashboard"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{.title}}
+{{.price}}
+
+
+    {{if gt .score 60}}
+    <p>及格</p>
+    {{else if gt .score 80}}
+    <p>良好</p>
+    {{else if gt .score 90}}
+    <p>优秀</p>
+    {{end}}
+
+    {{.a.Name}}
+
+
+    {{range $i,$v := .v}}
+    <p>{{$i}}--------{{$v}}</p>
+    <div>
+        {{$v.Name}}->{{$v.Id}}->{{$v.Content}}
+    </div>
+    {{end}}
+    <ul>
+        {{range $i,$v := .v}}
+        <li>{{$v.Name}}->{{$v.Id}}->{{$v.Content}}</li>
+        {{end}}
+    </ul>
+    {{.date}}
+    <br>
+    {{UnixToTime .date}}
+    <ol>
+        {{range $i,$v:=.v}}
+        {{with $v}}
+        <li>{{.Content}}</li>
+        {{end}}
+        {{end}}
+    </ol>
+
+
+</body>
+</html>
+{{end}}

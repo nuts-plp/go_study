@@ -1,0 +1,26 @@
+{{define "uploadMultiFilesDifferentName.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传多个不同名称的文件</title>
+</head>
+<body>
+<h1>上传多个不同名称的文件</h1>
+<br>
+<form action="/v3/uploadmultifilesdifferentname" enctype="multipart/form-data" method="post">
+  <hr>
+  <input type="text" name="username" placeholder="请输入用户名">
+  <br>
+  <input type="text" name="email" placeholder="请输入邮箱">
+  <br>
+  <input type="file" name="profile1" placeholder="请上传第一个文件">
+  <br>
+  <input type="file" name="profile2" placeholder="请上传第二个文件">
+  <br>
+  <input type="submit" value="submit">
+  <br>
+</form>
+</body>
+</html>
+{{end}}
