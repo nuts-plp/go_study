@@ -1,0 +1,24 @@
+{{define "uploadSingleFile.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传单个文件</title>
+</head>
+<body>
+<h1>上传单个文件</h1>
+<br>
+<form action="/v1/uploadsinglefile" enctype="multipart/form-data" method="post">
+    <hr>
+    <input type="text" name="username" placeholder="请输入用户名">
+    <br>
+    <input type="text" name="email" placeholder="请输入你的邮箱">
+    <br>
+    <input type="file" name="profile" placeholder="请选择你的头像">
+    <br>
+    <input type="submit" value="submit">
+</form>
+
+</body>
+</html>
+{{end}}
