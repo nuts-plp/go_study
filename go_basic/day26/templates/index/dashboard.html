@@ -1,0 +1,22 @@
+{{define "index/dashboard.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="./static/css/base.css">
+</head>
+<body>
+<image src="ststic/image/mac3.jpg" alt=""></image>
+<div>标题</div>
+<h1>{{ .title }}</h1>
+<div>价格</div>
+<h2>{{.price}}</h2>
+<form action="/postdata" method="post">
+    name:<input type="text" name="name" > <br>
+    age: <input type="number" name="age"> <br>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
+{{end}}

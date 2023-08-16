@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"zinx/ziface"
-	"zinx/znet"
+	"tcpbox/tcpiface"
+	"tcpbox/tcpnet"
 )
 
 type PingRouter struct{}
 
-func (p *PingRouter) Handle(request ziface.IRequest) {
+func (p *PingRouter) Handle(request tcpiface.IRequest) {
 	fmt.Println("Call PingRouter Handle...")
 	fmt.Println("rece from client:msgID:", request.GetMsgID(), ",data:", request.GetData())
 	_, err := request.GetConnection().GetTCPConnection().Write([]byte("ping...ping...ping..."))
@@ -19,7 +19,7 @@ func (p *PingRouter) Handle(request ziface.IRequest) {
 
 type HelloRouter struct{}
 
-func (p *HelloRouter) Handle(request ziface.IRequest) {
+func (p *HelloRouter) Handle(request tcpiface.IRequest) {
 	fmt.Println("Call HelloRouter Handle...")
 	fmt.Println("rece from client:msgID:", request.GetMsgID(), ",data:", request.GetData())
 	_, err := request.GetConnection().GetTCPConnection().Write([]byte("Hello...Hello...Hello..."))
@@ -29,7 +29,7 @@ func (p *HelloRouter) Handle(request ziface.IRequest) {
 }
 
 //创建连接之后的执行的钩子函数
-func DoConnectionBegin(conn ziface.IConnection) {
+func DoConnectionBegin(conn tcpiface.IConnection) {
 	fmt.Println("=====> DoConnectionBegin is Called......")
 	if err := conn.SendMsg(202, []byte("DoConnection Begin")); err != nil {
 		fmt.Println(err)
@@ -39,7 +39,7 @@ func DoConnectionBegin(conn ziface.IConnection) {
 }
 
 //链接断开之前需要执行的函数
-func DoConnectionLost(conn ziface.IConnection) {
+func DoConnectionLost(conn tcpiface.IConnection) {
 	fmt.Println("====> DoConnectionLost is Called......")
 	fmt.Println("conn ID = ", conn.GetConnID(), " is lost......")
 	property1, err := conn.GetProperty("name")
@@ -56,7 +56,7 @@ func DoConnectionLost(conn ziface.IConnection) {
 
 func main() {
 	//创建服务器对象
-	s := znet.NewServer("[Zinx V0.6]")
+	s := tcpnet.NewServer("[Zinx V0.6]")
 
 	//注册链接的钩子函数
 	s.SetOnConnStart(DoConnectionBegin)
