@@ -15,5 +15,9 @@ func main() {
 		})
 
 	})
+	engine.GET("/hhh", func(c *gin.Context) {
+		c.String(http.StatusOK, "asjdajkshdkajs")
+
+	})
 	engine.Run(":8000")
 }
