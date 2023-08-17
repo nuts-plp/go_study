@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "./service";
+service Dial{
+  rpc Add(Req) returns (Res);
+}
+
+message Req{
+  string name = 1;
+}
+message Res{
+  string reply = 1;
+}

@@ -2,7 +2,7 @@ module go_basic
 
 go 1.18
 
-
+require github.com/Shopify/sarama v1.34.1
 
 require (
 	github.com/boj/redistore v0.0.0-20180917114910-cd5dcc76aeff // indirect
