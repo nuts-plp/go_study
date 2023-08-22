@@ -5,8 +5,25 @@ go 1.18
 require github.com/Shopify/sarama v1.34.1
 
 require (
-	github.com/boj/redistore v0.0.0-20180917114910-cd5dcc76aeff // indirect
+	github.com/cheekybits/genny v1.0.0 // indirect
+	github.com/go-log/log v0.1.0 // indirect
+	github.com/lucas-clemente/quic-go v0.13.1 // indirect
+	github.com/marten-seemann/chacha20 v0.2.0 // indirect
+	github.com/marten-seemann/qtls v0.4.1 // indirect
+	github.com/micro/cli v0.2.0 // indirect
+	github.com/micro/go-micro v1.18.0 // indirect
+	github.com/micro/mdns v0.3.0 // indirect
+	github.com/miekg/dns v1.1.22 // indirect
+	github.com/mitchellh/hashstructure v1.0.0 // indirect
+	github.com/nats-io/jwt v0.3.0 // indirect
+	github.com/nats-io/nats.go v1.9.1 // indirect
+	github.com/nats-io/nkeys v0.1.0 // indirect
+	github.com/nats-io/nuid v1.0.1 // indirect
+	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
+)
 
+require (
+	github.com/boj/redistore v0.0.0-20180917114910-cd5dcc76aeff // indirect
 	github.com/bwmarrin/snowflake v0.3.0 // indirect
 	github.com/coreos/etcd v3.3.27+incompatible // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
@@ -94,7 +111,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace (
-	github.com/Shopify/sarama => github.com/Shopify/sarama v1.19.0
-
-)
+replace github.com/Shopify/sarama => github.com/Shopify/sarama v1.19.0
