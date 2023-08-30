@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "./service;ppc";
+
+
+
+message Reqc{
+  string name = 1;
+}
+
+message Resc{
+  string age = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package="./servi;servic";
+service Talk{
+  rpc SayHello(Req)returns(Resp){}
+  rpc SayName(Req)returns(Resp){}
+}
+
+message Req{
+  string request = 1;
+}
+
+message Resp{
+  string response = 1;
+}
