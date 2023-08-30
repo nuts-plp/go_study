@@ -31,4 +31,5 @@ func main() {
 	ser.Init()
 	micro.RegisterHandler(ser.Server(), new(Hi))
 	ser.Run()
+	/////
 }
