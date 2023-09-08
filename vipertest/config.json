@@ -1,0 +1,9 @@
+{
+  "mysql": {
+    "dbname": "test",
+    "dbuser": "sncot",
+    "password": "121231",
+    "host": "127.0.0.1",
+    "port": "336"
+  }
+}

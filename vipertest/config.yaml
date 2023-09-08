@@ -1,0 +1,6 @@
+mysql:
+  dbuser: "root"
+  port: 3306
+  dbname: "test"
+  password: "950629"
+  dbhost: "47.92.232.26"
