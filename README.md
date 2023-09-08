@@ -1,3 +1,3 @@
 # go_study
-person study
-study git
+person study  
+ git&&log
