@@ -1,0 +1,28 @@
+type: google.api.Service
+config_version: 3
+
+
+http:
+  rules:
+    - selector: nuts.echo.v1.EchoService.Echo
+      post: "/v1/example/echo"
+      body: "*"
+#      additional_bindings:
+#        - get: "/v1/example/"  #get 方法没有body
+#        - fetch: "/v1/example"
+#          body:
+    - selector: nuts.echo.v1.EchoService.EchoBody
+      post: "/v1/echobody"
+      body: "*"
+      additional_bindings:
+        - get: "/v1/echobody/{id}"
+        - get: "/v1/echobody/{id}/{num}"
+    - selector: nuts.echo.v1.EchoService.EchoHeader
+      put: "/v1/echoheader/{id}/{num}"
+    - selector: nuts.echo.v1.EchoService.EchoUpload
+      post: "/v1/echoupload"
+      body: "*"
+      additional_bindings:
+        - put: "/v1/echoupload"
+          body: "*"
+

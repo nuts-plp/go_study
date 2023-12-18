@@ -1,0 +1,27 @@
+syntax="proto3";
+option go_package="./;proto";
+
+
+///流式rpc    注意关键字stream
+service StreamC{
+  //客户端流式rpc
+  rpc ClientStream(stream streamReq)returns(streamResp);
+
+  //服务端流式rpc
+  rpc ServerStream(streamReq)returns(stream streamResp);
+
+  //客户端和服务端均流式rpc
+  rpc DoubleStream(stream streamReq)returns(stream streamResp);
+}
+message streamMsg{
+  string name=1;
+  int32 value=2;
+}
+
+message streamReq{
+  streamMsg request=1;
+}
+
+message streamResp{
+  streamMsg response=1;
+}

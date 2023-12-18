@@ -1,0 +1,13 @@
+syntax="proto3";
+option go_package="./;ser";
+
+
+message req{
+  string request=1;
+}
+message resp{
+  string response=1;
+}
+service SearchV{
+  rpc Search(req)returns(resp);
+}

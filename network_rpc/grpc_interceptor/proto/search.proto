@@ -1,0 +1,16 @@
+syntax="proto3";
+
+option go_package="./;grpc_interceptor";
+
+message Req{
+  string request=1;
+}
+
+message Resp{
+  string response=1;
+}
+
+service SearchV{
+rpc SayHi(stream Req)returns(stream Resp);
+rpc SayHello(Req)returns(Resp);
+}

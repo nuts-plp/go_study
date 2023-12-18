@@ -1,0 +1,14 @@
+syntax="proto3";
+option go_package="./;grpc_tls";
+
+message Req{
+  string request=1;
+}
+
+message Resp{
+  string response=1;
+}
+
+service SearchC{
+  rpc Search(Req)returns(Resp);
+}

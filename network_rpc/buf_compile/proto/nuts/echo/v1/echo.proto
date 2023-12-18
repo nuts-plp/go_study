@@ -1,0 +1,40 @@
+syntax="proto3";
+
+package nuts.echo.v1;
+
+//import "annotations.proto";
+//import "http.proto";
+
+message EchoServiceEchoRequest{
+  string name=1;
+}
+message EchoServiceEchoResponse{
+  string value=1;
+}
+message EchoServiceEchoBodyRequest{
+  string id=1;
+  string num=2;
+}
+message EchoServiceEchoBodyResponse{
+  string value=1;
+}
+message EchoServiceEchoHeaderRequest{
+  int32 id=1;
+  string num=2;
+}
+message EchoServiceEchoHeaderResponse{
+  string value=1;
+}
+message EchoServiceEchoUploadRequest{
+  string name=1;
+  bytes content=2;
+}
+message EchoServiceEchoUploadResponse{
+  string value=1;
+}
+service EchoService{
+  rpc Echo(EchoServiceEchoRequest)returns(EchoServiceEchoResponse){}
+  rpc EchoBody(EchoServiceEchoBodyRequest)returns(EchoServiceEchoBodyResponse){}
+  rpc EchoHeader(EchoServiceEchoHeaderRequest)returns(EchoServiceEchoHeaderResponse){}
+  rpc EchoUpload(stream EchoServiceEchoUploadRequest)returns(EchoServiceEchoUploadResponse){}
+}

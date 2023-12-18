@@ -1,0 +1,16 @@
+syntax= "proto3";
+option go_package="./;service";
+
+message Request{
+  string name = 1;
+  int32 age =2;
+  repeated string hobbies = 3;
+}
+message Response{
+  string answer = 1;
+
+}
+
+service SayHello{
+  rpc SayHi(Request)returns (Response);
+}

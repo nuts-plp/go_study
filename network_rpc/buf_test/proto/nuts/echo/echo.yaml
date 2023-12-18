@@ -1,0 +1,7 @@
+type: google.api.Service
+version: 3
+http:
+  rules:
+    - selector: nuts.echo.v1.EchoService.Echo
+      post: "/v1/example"
+      body: "*"
