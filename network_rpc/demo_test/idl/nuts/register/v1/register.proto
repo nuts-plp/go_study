@@ -1,0 +1,13 @@
+syntax="proto3";
+package nuts.register.v1;
+service RegisterService{
+  rpc Register(RegisterRequest)returns(RegisterResponse){}
+}
+
+message RegisterRequest{
+  string name=1;
+  string password=2;
+}
+message RegisterResponse{
+  string  resp=1;
+}

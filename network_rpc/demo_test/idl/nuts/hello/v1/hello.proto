@@ -1,0 +1,13 @@
+syntax="proto3";
+package nuts.hello_service.v1;
+
+service HelloService{
+  rpc Echo(EchoRequest)returns(EchoResponse){}
+}
+
+message EchoRequest{
+  string value=1;
+}
+message EchoResponse{
+  string value=1;
+}

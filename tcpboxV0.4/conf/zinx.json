@@ -1,7 +1,0 @@
-{
-  "Name": "ZinxApp",
-  "Host": "0.0.0.0",
-  "Version": 0.3,
-  "MaxConn": 1000,
-  "MaxPackageSize": 4096
-}
